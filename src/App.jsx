@@ -38,12 +38,13 @@ const App = () => {
         style={{
           position: "fixed",
           top: "0",
-          height: "100%",
+          height: "calc(100% - 20px)",
           width: "calc(100% - 20px)",
           padding: 10,
+          overflow: "auto",
         }}
       >
-        <Gallery photos={images} margin={10} onClick={openLightbox} />
+        <Gallery photos={images} margin={5} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
             <Modal onClose={closeLightbox}>

@@ -4,8 +4,6 @@ import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 export default function ZoomImage({ data }) {
   return (
     <div
-      id="imageContainer"
-      className="image-container"
       style={{
         lineHeight: 0,
         position: "relative",
@@ -19,7 +17,6 @@ export default function ZoomImage({ data }) {
       <TransformWrapper>
         <React.Fragment>
           <div
-            className="image-wrapper"
             style={{
               cursor: "-moz-zoom-in",
               cursor: "-webkit-zoom-in",
@@ -28,8 +25,6 @@ export default function ZoomImage({ data }) {
           >
             <TransformComponent>
               <img
-                id="image"
-                className="image"
                 src={data.src}
                 style={{
                   height: "auto",

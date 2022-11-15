@@ -58,6 +58,7 @@ const App = () => {
                 components={{
                   View: (props) => <ZoomImage {...props} />,
                 }}
+                showNavigationOnTouchDevice={true}
               />
             </Modal>
           ) : null}

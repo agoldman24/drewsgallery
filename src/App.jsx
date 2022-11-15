@@ -1,8 +1,9 @@
 import { Fragment, useState, useCallback } from "react";
 import "./index.css";
-import { photos } from "./photos/photos";
+import { images } from "./images/images";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
+import ZoomImage from "./ZoomImage";
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
@@ -42,18 +43,21 @@ const App = () => {
           padding: 10,
         }}
       >
-        <Gallery photos={photos} margin={10} onClick={openLightbox} />
+        <Gallery photos={images} margin={10} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
             <Modal onClose={closeLightbox}>
               <Carousel
                 currentIndex={currentImage}
-                views={photos.map((x) => ({
+                views={images.map((x) => ({
                   ...x,
                   srcset: x.srcSet,
                   caption: x.title,
                   source: x.src,
                 }))}
+                components={{
+                  View: (props) => <ZoomImage {...props} />,
+                }}
               />
             </Modal>
           ) : null}

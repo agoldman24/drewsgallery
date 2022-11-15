@@ -1,4 +1,4 @@
-export const photos = [
+export const images = [
   {
     src: require("./snowmen.jpeg"),
     width: 2864,

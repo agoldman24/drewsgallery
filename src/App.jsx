@@ -4,15 +4,16 @@ import { images } from "./images/images";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import ZoomImage from "./ZoomImage";
+import GalleryImage from "./GalleryImage";
 
 const App = () => {
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
 
-  const openLightbox = useCallback((event, { photo, index }) => {
+  const openLightbox = (index) => {
     setCurrentImage(index);
     setViewerIsOpen(true);
-  }, []);
+  };
 
   const closeLightbox = () => {
     setCurrentImage(0);
@@ -44,7 +45,17 @@ const App = () => {
           overflow: "auto",
         }}
       >
-        <Gallery photos={images} margin={5} onClick={openLightbox} />
+        <Gallery
+          photos={images}
+          margin={5}
+          renderImage={(image) => (
+            <GalleryImage
+              image={image}
+              key={image.photo.src}
+              openLightbox={openLightbox}
+            />
+          )}
+        />
         <ModalGateway>
           {viewerIsOpen ? (
             <Modal onClose={closeLightbox}>

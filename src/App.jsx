@@ -1,4 +1,4 @@
-import { Fragment, useState, useCallback } from "react";
+import { Fragment, useState } from "react";
 import "./index.css";
 import { images } from "./images/images";
 import Gallery from "react-photo-gallery";

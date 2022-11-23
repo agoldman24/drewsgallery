@@ -1,6 +1,20 @@
 import { useState } from "react";
 
-export default function GalleryImage({ image, openLightbox }) {
+export default function GalleryImage({
+  image,
+  openLightbox,
+}: {
+  image: {
+    photo: {
+      src: string;
+      height: number;
+      width: number;
+    };
+    index: number;
+    margin: number;
+  };
+  openLightbox: Function;
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const { photo, index, margin } = image;
   const { height, width } = photo;

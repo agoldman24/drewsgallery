@@ -1,5 +1,10 @@
 export const images = [
   {
+    src: require("./cow.jpeg"),
+    width: 2923,
+    height: 2897,
+  },
+  {
     src: require("./bear.jpeg"),
     width: 1609,
     height: 2010,

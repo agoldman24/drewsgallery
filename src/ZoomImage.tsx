@@ -1,7 +1,7 @@
 import React from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
-export default function ZoomImage({ data }) {
+export default function ZoomImage({ data }: { data: { src: string } }) {
   return (
     <div
       style={{
@@ -16,13 +16,7 @@ export default function ZoomImage({ data }) {
     >
       <TransformWrapper>
         <React.Fragment>
-          <div
-            style={{
-              cursor: "-moz-zoom-in",
-              cursor: "-webkit-zoom-in",
-              cursor: "zoom-in",
-            }}
-          >
+          <div style={{ cursor: "zoom-in" }}>
             <TransformComponent>
               <img
                 src={data.src}

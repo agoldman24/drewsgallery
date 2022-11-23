@@ -1,43 +1,18 @@
 {
   "name": "drewsgallery",
   "version": "1.0.0",
-  "private": true,
-  "dependencies": {
-    "@types/node": "^18.11.9",
-    "@types/react": "^18.0.25",
-    "@types/react-dom": "^18.0.8",
-    "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "react-images": "^1.2.0-beta.7",
-    "react-photo-gallery": "^8.0.0",
-    "react-scripts": "5.0.1",
-    "react-zoom-pan-pinch": "1.6.1"
+  "main": "index.js",
+  "engines": {
+    "node": "16.16.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "concurrently \"node index.js\" \"cd client && npm start\"",
+    "start": "npm i -S express && node index.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "ts-loader": "^9.4.1",
-    "typescript": "^4.8.4"
+  "dependencies": {
+    "concurrently": "^7.6.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
   }
 }

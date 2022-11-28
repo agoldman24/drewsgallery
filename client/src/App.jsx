@@ -1,11 +1,14 @@
-import { Fragment, useState } from "react";
+import { useEffect, useState } from "react";
 import { Dialog, withStyles } from "@material-ui/core";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { defaultTheme } from "./styles";
 import "./index.css";
 import { images } from "./images/images";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
-import ZoomImage from "./ZoomImage";
-import GalleryImage from "./GalleryImage";
+import ZoomImage from "./components/ZoomImage";
+import GalleryImage from "./components/GalleryImage";
+import NavigationBar from "./components/NavigationBar";
 
 const styles = () => ({
   root: {
@@ -17,8 +20,23 @@ const styles = () => ({
 });
 
 const App = ({ classes }) => {
+  const [filteredImages, setFilteredImages] = useState(images);
   const [currentImage, setCurrentImage] = useState(0);
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
+  const [keyword, setKeyword] = useState("");
+
+  useEffect(() => {
+    if (keyword.length) {
+      setFilteredImages(
+        images.filter(
+          (image) =>
+            image.keywords.filter((k) => k.includes(keyword)).length > 0
+        )
+      );
+    } else {
+      setFilteredImages(images);
+    }
+  }, [keyword]);
 
   const openLightbox = (index) => {
     setCurrentImage(index);
@@ -29,21 +47,27 @@ const App = ({ classes }) => {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
+  console.log("keyword:", keyword);
   return (
-    <Fragment>
-      <div id="stars0"></div>
-      <div id="stars1"></div>
-      <div id="stars2"></div>
+    <MuiThemeProvider theme={createMuiTheme(defaultTheme)}>
+      <div id="stars0" />
+      <div id="stars1" />
+      <div id="stars2" />
       <section>
-        <span className="shootingStar"></span>
-        <span className="shootingStar"></span>
-        <span className="shootingStar"></span>
-        <span className="shootingStar"></span>
+        <span className="shootingStar" />
+        <span className="shootingStar" />
+        <span className="shootingStar" />
+        <span className="shootingStar" />
       </section>
       <img
         src="https://github.com/spite/CSS3DClouds/blob/master/smoke.png?raw=true"
         style={{ opacity: 0.2, width: "300%" }}
         className="cloud"
+      />
+      <NavigationBar
+        viewerIsOpen={viewerIsOpen}
+        keyword={keyword}
+        setKeyword={(v) => setKeyword(v)}
       />
       <Dialog
         open={true}
@@ -58,17 +82,17 @@ const App = ({ classes }) => {
       >
         <div
           style={{
-            top: "0",
+            top: "45px",
             left: "0",
             width: "calc(100% - 10px)",
-            height: "calc(100% - 10px)",
+            height: "calc(100% - 55px)",
             position: "fixed",
             overflowY: "auto",
             padding: "5px",
           }}
         >
           <Gallery
-            photos={images}
+            photos={filteredImages}
             renderImage={(image) => (
               <GalleryImage
                 image={image}
@@ -80,10 +104,10 @@ const App = ({ classes }) => {
           />
           <ModalGateway>
             {viewerIsOpen && (
-              <Modal onClose={closeLightbox}>
+              <Modal onClose={closeLightbox} style={{ zIndex: "1303" }}>
                 <Carousel
                   currentIndex={currentImage}
-                  views={images.map((x) => ({ ...x, source: x.src }))}
+                  views={filteredImages.map((x) => ({ ...x, source: x.src }))}
                   components={{
                     View: (props) => <ZoomImage {...props} />,
                   }}
@@ -94,7 +118,7 @@ const App = ({ classes }) => {
           </ModalGateway>
         </div>
       </Dialog>
-    </Fragment>
+    </MuiThemeProvider>
   );
 };
 

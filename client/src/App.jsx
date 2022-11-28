@@ -3,7 +3,7 @@ import { Dialog, withStyles } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import { defaultTheme } from "./styles";
 import "./index.css";
-import { images } from "./images/images";
+import { images } from "./data/images";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import ZoomImage from "./components/ZoomImage";
@@ -47,7 +47,7 @@ const App = ({ classes }) => {
     setCurrentImage(0);
     setViewerIsOpen(false);
   };
-  console.log("keyword:", keyword);
+
   return (
     <MuiThemeProvider theme={createMuiTheme(defaultTheme)}>
       <div id="stars0" />

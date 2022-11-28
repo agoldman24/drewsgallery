@@ -39,7 +39,7 @@ export default function GalleryImage({
           }}
         >
           <img
-            src={require("./spinner.gif")}
+            src={require("../images/spinner.gif")}
             style={{
               width: "50px",
             }}

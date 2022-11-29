@@ -20,3 +20,13 @@ export const gradientTextStyle = (variety: number) => ({
   WebkitBackgroundClip: "text",
   WebkitTextFillColor: "transparent",
 });
+
+export const galleryContainerStyle = {
+  top: "45px",
+  left: "0",
+  width: "calc(100% - 10px)",
+  height: "calc(100% - 55px)",
+  position: "fixed",
+  overflowY: "auto",
+  padding: "5px",
+};

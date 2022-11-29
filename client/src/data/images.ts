@@ -292,7 +292,7 @@ export const images = [
     src: require("../images/virginia.jpeg"),
     width: 3851,
     height: 2347,
-    medium: Medium.OIL_PASTEL,
+    medium: Medium.COLORED_PENCIL,
     keywords: ["virginia", "uva", "shoe", "shirt"],
   },
   {

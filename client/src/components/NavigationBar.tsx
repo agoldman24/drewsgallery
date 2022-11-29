@@ -49,13 +49,19 @@ const styles = () => ({
 
 const NavigationBar = ({
   viewerIsOpen,
+  filterIsOpen,
+  setFilterIsOpen,
   keyword,
   setKeyword,
+  mediums,
   classes,
 }: {
   viewerIsOpen: boolean;
+  filterIsOpen: boolean;
+  setFilterIsOpen: (isOpen: boolean) => void;
   keyword: string;
   setKeyword: (val: string) => void;
+  mediums: { [key: string]: boolean };
   classes: any;
 }) => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -70,7 +76,10 @@ const NavigationBar = ({
   return (
     <Dialog
       open={true}
-      style={{ height: "fit-content", zIndex: viewerIsOpen ? "0" : "1301" }}
+      style={{
+        height: "fit-content",
+        zIndex: viewerIsOpen || filterIsOpen ? "0" : "1301",
+      }}
       classes={{
         paper: classes.paper,
       }}
@@ -82,7 +91,10 @@ const NavigationBar = ({
     >
       <Dialog
         open={true}
-        style={{ height: "fit-content", zIndex: viewerIsOpen ? "0" : "1302" }}
+        style={{
+          height: "fit-content",
+          zIndex: viewerIsOpen || filterIsOpen ? "0" : "1302",
+        }}
         classes={{
           paper: classes.paper,
         }}
@@ -175,9 +187,13 @@ const NavigationBar = ({
           </Grid>
           <Grid item>
             <IconButton
+              color={
+                Object.values(mediums).includes(false) ? "primary" : "default"
+              }
               onClick={() => {
                 setIsSearchVisible(false);
                 setKeyword("");
+                setFilterIsOpen(true);
               }}
             >
               <FilterListRounded />

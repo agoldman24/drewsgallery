@@ -3,14 +3,14 @@ import {
   FormGroup,
   FormControl,
   FormControlLabel,
-  FormLabel,
   IconButton,
 } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import { Fragment, SyntheticEvent } from "react";
-import { Medium } from "../data/types";
+import { defaultMediums, emptyMediums, Medium } from "../data/types";
+import { closeButtonStyle, closeIconStyle } from "../styles";
 
-export default function FilterModal({
+export default function Filters({
   mediums,
   setMediums,
   closeFilter,
@@ -19,17 +19,26 @@ export default function FilterModal({
   setMediums: Function;
   closeFilter: (event: SyntheticEvent) => void;
 }) {
+  const allSelected = Object.values(mediums).filter((m) => !m).length === 0;
   return (
     <Fragment>
-      <IconButton
-        style={{ position: "fixed", top: "0", right: "0" }}
-        onClick={closeFilter}
-      >
-        <Close style={{ width: "32px", height: "32px" }} />
-      </IconButton>
       <FormControl component="fieldset">
-        <FormLabel component="legend">Mediums</FormLabel>
+        <IconButton style={closeButtonStyle} onClick={closeFilter}>
+          <Close style={closeIconStyle} />
+        </IconButton>
         <FormGroup>
+          <FormControlLabel
+            control={
+              <Checkbox
+                color="primary"
+                checked={allSelected}
+                onClick={() =>
+                  setMediums(allSelected ? emptyMediums : defaultMediums)
+                }
+              />
+            }
+            label={"All Mediums"}
+          />
           <FormControlLabel
             control={
               <Checkbox
@@ -41,7 +50,6 @@ export default function FilterModal({
                     [Medium.COLORED_PENCIL]: !mediums[Medium.COLORED_PENCIL],
                   })
                 }
-                name={Medium.COLORED_PENCIL}
               />
             }
             label={Medium.COLORED_PENCIL}
@@ -57,7 +65,6 @@ export default function FilterModal({
                     [Medium.ACRYLIC_PAINT]: !mediums[Medium.ACRYLIC_PAINT],
                   })
                 }
-                name={Medium.ACRYLIC_PAINT}
               />
             }
             label={Medium.ACRYLIC_PAINT}
@@ -73,7 +80,6 @@ export default function FilterModal({
                     [Medium.WATER_COLOR]: !mediums[Medium.WATER_COLOR],
                   })
                 }
-                name={Medium.WATER_COLOR}
               />
             }
             label={Medium.WATER_COLOR}
@@ -89,7 +95,6 @@ export default function FilterModal({
                     [Medium.INK]: !mediums[Medium.INK],
                   })
                 }
-                name={Medium.INK}
               />
             }
             label={Medium.INK}
@@ -105,7 +110,6 @@ export default function FilterModal({
                     [Medium.CHARCOAL]: !mediums[Medium.CHARCOAL],
                   })
                 }
-                name={Medium.CHARCOAL}
               />
             }
             label={Medium.CHARCOAL}
@@ -121,7 +125,6 @@ export default function FilterModal({
                     [Medium.OIL_PASTEL]: !mediums[Medium.OIL_PASTEL],
                   })
                 }
-                name={Medium.OIL_PASTEL}
               />
             }
             label={Medium.OIL_PASTEL}

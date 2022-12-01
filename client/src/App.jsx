@@ -1,25 +1,21 @@
 import { useEffect, useState } from "react";
 import { Dialog, withStyles } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
-import { defaultTheme, galleryContainerStyle } from "./styles";
+import {
+  defaultTheme,
+  dialogStyles,
+  galleryContainerStyle,
+  modalStyle,
+} from "./styles";
 import { images } from "./data/images";
-import { Medium } from "./data/types";
+import { defaultMediums } from "./data/types";
 import Gallery from "react-photo-gallery";
 import Carousel, { Modal, ModalGateway } from "react-images";
 import GalaxyBackground from "./components/GalaxyBackground";
 import ZoomImage from "./components/ZoomImage";
 import GalleryImage from "./components/GalleryImage";
 import NavigationBar from "./components/NavigationBar";
-import FilterModal from "./components/FilterContent";
-
-const styles = () => ({
-  root: {
-    position: "initial",
-  },
-  backdropRoot: {
-    background: "none",
-  },
-});
+import Filters from "./components/Filters";
 
 const App = ({ classes }) => {
   const [filteredImages, setFilteredImages] = useState(images);
@@ -27,17 +23,11 @@ const App = ({ classes }) => {
   const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
-  const [mediums, setMediums] = useState({
-    [Medium.COLORED_PENCIL]: true,
-    [Medium.ACRYLIC_PAINT]: true,
-    [Medium.WATER_COLOR]: true,
-    [Medium.INK]: true,
-    [Medium.CHARCOAL]: true,
-    [Medium.OIL_PASTEL]: true,
-  });
+  const [mediums, setMediums] = useState(defaultMediums);
 
   useEffect(() => {
     if (keyword.length) {
+      setMediums(defaultMediums);
       setFilteredImages(
         images.filter(
           (image) =>
@@ -109,7 +99,7 @@ const App = ({ classes }) => {
           />
           <ModalGateway>
             {viewerIsOpen ? (
-              <Modal onClose={closeLightbox} style={{ zIndex: "1303" }}>
+              <Modal onClose={closeLightbox} style={modalStyle}>
                 <Carousel
                   currentIndex={currentImage}
                   views={filteredImages.map((x) => ({ ...x, source: x.src }))}
@@ -120,8 +110,12 @@ const App = ({ classes }) => {
                 />
               </Modal>
             ) : filterIsOpen ? (
-              <Modal onClose={closeFilter} style={{ zIndex: "1303" }}>
-                <FilterModal
+              <Modal
+                onClose={closeFilter}
+                style={modalStyle}
+                closeOnBackdropClick={false}
+              >
+                <Filters
                   mediums={mediums}
                   setMediums={setMediums}
                   closeFilter={closeFilter}
@@ -135,4 +129,4 @@ const App = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(App);
+export default withStyles(dialogStyles)(App);

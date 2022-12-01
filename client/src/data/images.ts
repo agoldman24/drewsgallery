@@ -27,14 +27,14 @@ export const images = [
     width: 3580,
     height: 2887,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["autumn", "fall", "leaves", "water", "psychedelic"],
+    keywords: ["autumn", "fall", "leaves", "water", "psychedelic", "nature"],
   },
   {
     src: require("../images/cliffs.jpeg"),
     width: 2818,
     height: 3590,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["cliff", "water", "waterfall"],
+    keywords: ["cliff", "water", "waterfall", "nature"],
   },
   {
     src: require("../images/coriolis.jpeg"),
@@ -50,6 +50,7 @@ export const images = [
       "galactic",
       "universe",
       "weather",
+      "nature",
     ],
   },
   {
@@ -68,6 +69,7 @@ export const images = [
       "galactic",
       "universe",
       "weather",
+      "nature",
     ],
   },
   {
@@ -199,14 +201,14 @@ export const images = [
     width: 2063,
     height: 1536,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["poppies", "flowers", "field"],
+    keywords: ["poppies", "flowers", "field", "nature"],
   },
   {
     src: require("../images/wintersun.jpeg"),
     width: 3885,
     height: 1459,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["winter", "cold", "snow", "trees", "sun", "sunset"],
+    keywords: ["winter", "cold", "snow", "trees", "sun", "sunset", "nature"],
   },
   {
     src: require("../images/rg3.jpeg"),
@@ -300,7 +302,16 @@ export const images = [
     width: 3669,
     height: 2924,
     medium: Medium.COLORED_PENCIL,
-    keywords: ["back", "tree", "leaves", "leaf", "run", "running", "runner"],
+    keywords: [
+      "back",
+      "tree",
+      "leaves",
+      "leaf",
+      "run",
+      "running",
+      "runner",
+      "nature",
+    ],
   },
   {
     src: require("../images/nightrace.jpeg"),

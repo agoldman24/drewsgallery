@@ -1,1 +1,1 @@
-Andrew's art gallery
+Andrew Goldman's art portfolio

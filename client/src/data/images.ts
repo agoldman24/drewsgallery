@@ -2,6 +2,29 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/snoopy.jpeg"),
+    width: 2919,
+    height: 2908,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "snoopy",
+      "woodstock",
+      "animal",
+      "space",
+      "universe",
+      "moon",
+      "star",
+      "stars",
+      "shooting star",
+      "dog",
+      "bird",
+      "cartoon",
+      "holiday",
+      "winter",
+      "christmas",
+    ],
+  },
+  {
     src: require("../images/cow.jpeg"),
     width: 2923,
     height: 2897,
@@ -27,14 +50,22 @@ export const images = [
     width: 3580,
     height: 2887,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["autumn", "fall", "leaves", "water", "psychedelic", "nature"],
+    keywords: [
+      "autumn",
+      "fall",
+      "leaf",
+      "leaves",
+      "water",
+      "psychedelic",
+      "nature",
+    ],
   },
   {
     src: require("../images/cliffs.jpeg"),
     width: 2818,
     height: 3590,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["cliff", "water", "waterfall", "nature"],
+    keywords: ["cliff", "rock", "rocks", "water", "waterfall", "nature"],
   },
   {
     src: require("../images/coriolis.jpeg"),
@@ -108,6 +139,8 @@ export const images = [
       "superhero",
       "new york",
       "city",
+      "sun",
+      "sunset",
     ],
   },
   {
@@ -124,7 +157,9 @@ export const images = [
       "ocean",
       "water",
       "dark",
+      "star",
       "stars",
+      "shooting star",
     ],
   },
   {
@@ -144,6 +179,7 @@ export const images = [
       "laser",
       "light",
       "stadium",
+      "cartoon",
     ],
   },
   {
@@ -194,6 +230,8 @@ export const images = [
       "pencil",
       "brick",
       "building",
+      "star",
+      "stars",
     ],
   },
   {
@@ -245,14 +283,14 @@ export const images = [
     width: 3754,
     height: 2776,
     medium: Medium.CHARCOAL,
-    keywords: ["objects"],
+    keywords: ["shapes", "objects", "light", "shadow"],
   },
   {
     src: require("../images/shapes.jpeg"),
     width: 2050,
     height: 1534,
     medium: Medium.CHARCOAL,
-    keywords: ["shapes"],
+    keywords: ["shapes", "objects", "light", "shadow"],
   },
   {
     src: require("../images/dogbike.jpeg"),
@@ -458,7 +496,7 @@ export const images = [
     width: 2100,
     height: 1536,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["spongebob"],
+    keywords: ["spongebob", "spongebobs", "cartoon"],
   },
   {
     src: require("../images/snowmen.jpeg"),

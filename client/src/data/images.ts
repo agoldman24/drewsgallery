@@ -2,6 +2,25 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/centrowitz.jpeg"),
+    width: 3686,
+    height: 2948,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "matthew",
+      "centrowitz",
+      "run",
+      "runner",
+      "running",
+      "race",
+      "track",
+      "sun",
+      "sunset",
+      "sunglasses",
+      "athlete",
+    ],
+  },
+  {
     src: require("../images/snoopy.jpeg"),
     width: 2919,
     height: 2908,
@@ -240,6 +259,13 @@ export const images = [
     height: 1536,
     medium: Medium.ACRYLIC_PAINT,
     keywords: ["poppies", "flowers", "field", "nature"],
+  },
+  {
+    src: require("../images/tree.jpeg"),
+    width: 2855,
+    height: 3882,
+    medium: Medium.WATER_COLOR,
+    keywords: ["tree", "plant", "branch", "trunk", "leaves", "nature"],
   },
   {
     src: require("../images/wintersun.jpeg"),

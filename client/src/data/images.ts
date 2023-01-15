@@ -2,6 +2,21 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/monarch.jpeg"),
+    width: 3893,
+    height: 2590,
+    medium: Medium.WATER_COLOR,
+    keywords: [
+      "butterfly",
+      "monarch",
+      "nature",
+      "grass",
+      "fly",
+      "butter",
+      "wing",
+    ],
+  },
+  {
     src: require("../images/centrowitz.jpeg"),
     width: 3686,
     height: 2948,

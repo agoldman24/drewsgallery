@@ -17,6 +17,20 @@ export const images = [
     ],
   },
   {
+    src: require("../images/brain.jpeg"),
+    width: 2913,
+    height: 3286,
+    medium: Medium.WATER_COLOR,
+    keywords: ["brain", "rainbow"],
+  },
+  {
+    src: require("../images/tumor.jpeg"),
+    width: 3252,
+    height: 2884,
+    medium: Medium.WATER_COLOR,
+    keywords: ["brain", "rainbow", "tumor", "circle"],
+  },
+  {
     src: require("../images/centrowitz.jpeg"),
     width: 3686,
     height: 2948,

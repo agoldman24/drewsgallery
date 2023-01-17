@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Dialog, withStyles } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import {
   defaultTheme,
@@ -10,20 +10,34 @@ import {
 import { images } from "./data/images";
 import { defaultMediums } from "./data/types";
 import Gallery from "react-photo-gallery";
-import Carousel, { Modal, ModalGateway } from "react-images";
+import { Modal, ModalGateway } from "react-images";
 import GalaxyBackground from "./components/GalaxyBackground";
-import ZoomImage from "./components/ZoomImage";
 import GalleryImage from "./components/GalleryImage";
 import NavigationBar from "./components/NavigationBar";
 import Filters from "./components/Filters";
+import PhotoSwipeLightbox from "photoswipe/lightbox";
+import PhotoSwipe from "photoswipe";
+import "photoswipe/style.css";
 
-const App = ({ classes }) => {
+const App = () => {
   const [filteredImages, setFilteredImages] = useState(images);
-  const [currentImage, setCurrentImage] = useState(0);
-  const [viewerIsOpen, setViewerIsOpen] = useState(false);
   const [filterIsOpen, setFilterIsOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [mediums, setMediums] = useState(defaultMediums);
+
+  useEffect(() => {
+    let lightbox = new PhotoSwipeLightbox({
+      gallery: "#gallery",
+      children: "a",
+      pswpModule: PhotoSwipe,
+    });
+    lightbox.init();
+
+    return () => {
+      lightbox.destroy();
+      lightbox = null;
+    };
+  }, []);
 
   useEffect(() => {
     if (keyword.length) {
@@ -49,16 +63,6 @@ const App = ({ classes }) => {
     );
   }, [mediums]);
 
-  const openLightbox = (index) => {
-    setCurrentImage(index);
-    setViewerIsOpen(true);
-  };
-
-  const closeLightbox = () => {
-    setCurrentImage(0);
-    setViewerIsOpen(false);
-  };
-
   const closeFilter = () => {
     setFilterIsOpen(false);
   };
@@ -67,64 +71,43 @@ const App = ({ classes }) => {
     <MuiThemeProvider theme={createMuiTheme(defaultTheme)}>
       <GalaxyBackground />
       <NavigationBar
-        viewerIsOpen={viewerIsOpen}
         filterIsOpen={filterIsOpen}
         setFilterIsOpen={setFilterIsOpen}
         keyword={keyword}
         setKeyword={setKeyword}
         mediums={mediums}
       />
-      <Dialog
-        open={true}
-        classes={{
-          root: classes.root,
-        }}
-        BackdropProps={{
-          classes: {
-            root: classes.backdropRoot,
-          },
-        }}
-      >
-        <div style={galleryContainerStyle}>
-          <Gallery
-            photos={filteredImages}
-            renderImage={(image) => (
+      <div id="gallery" style={galleryContainerStyle} className="pswp-gallery">
+        <Gallery
+          photos={filteredImages}
+          renderImage={(image) => {
+            return (
               <GalleryImage
                 image={image}
+                size={filteredImages[image.index].size}
                 key={image.photo.src}
-                openLightbox={openLightbox}
               />
-            )}
-            margin={5}
-          />
-          <ModalGateway>
-            {viewerIsOpen ? (
-              <Modal onClose={closeLightbox} style={modalStyle}>
-                <Carousel
-                  currentIndex={currentImage}
-                  views={filteredImages.map((x) => ({ ...x, source: x.src }))}
-                  components={{
-                    View: (props) => <ZoomImage {...props} />,
-                  }}
-                  showNavigationOnTouchDevice={true}
-                />
-              </Modal>
-            ) : filterIsOpen ? (
-              <Modal
-                onClose={closeFilter}
-                style={modalStyle}
-                closeOnBackdropClick={false}
-              >
-                <Filters
-                  mediums={mediums}
-                  setMediums={setMediums}
-                  closeFilter={closeFilter}
-                />
-              </Modal>
-            ) : null}
-          </ModalGateway>
-        </div>
-      </Dialog>
+            );
+          }}
+          margin={5}
+        />
+      </div>
+
+      <ModalGateway>
+        {filterIsOpen && (
+          <Modal
+            onClose={closeFilter}
+            style={modalStyle}
+            closeOnBackdropClick={false}
+          >
+            <Filters
+              mediums={mediums}
+              setMediums={setMediums}
+              closeFilter={closeFilter}
+            />
+          </Modal>
+        )}
+      </ModalGateway>
     </MuiThemeProvider>
   );
 };

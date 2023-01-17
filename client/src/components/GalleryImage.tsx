@@ -2,6 +2,7 @@ import { useState } from "react";
 
 export default function GalleryImage({
   image,
+  size,
   openLightbox,
 }: {
   image: {
@@ -13,13 +14,23 @@ export default function GalleryImage({
     index: number;
     margin: number;
   };
+  size: {
+    height: number;
+    width: number;
+  };
   openLightbox: Function;
 }) {
   const [isLoading, setIsLoading] = useState(true);
   const { photo, index, margin } = image;
   const { height, width } = photo;
   return (
-    <div style={{ height, width, margin, cursor: "pointer" }}>
+    <a
+      href={photo.src}
+      style={{ height, width, margin, cursor: "pointer" }}
+      data-pswp-width={size.width}
+      data-pswp-height={size.height}
+      target="_blank"
+    >
       <img
         {...photo}
         style={{
@@ -46,6 +57,6 @@ export default function GalleryImage({
           />
         </div>
       )}
-    </div>
+    </a>
   );
 }

@@ -48,7 +48,6 @@ const styles = () => ({
 });
 
 const NavigationBar = ({
-  viewerIsOpen,
   filterIsOpen,
   setFilterIsOpen,
   keyword,
@@ -56,7 +55,6 @@ const NavigationBar = ({
   mediums,
   classes,
 }: {
-  viewerIsOpen: boolean;
   filterIsOpen: boolean;
   setFilterIsOpen: (isOpen: boolean) => void;
   keyword: string;
@@ -78,7 +76,7 @@ const NavigationBar = ({
       open={true}
       style={{
         height: "fit-content",
-        zIndex: viewerIsOpen || filterIsOpen ? "0" : "1301",
+        zIndex: filterIsOpen ? "0" : "1301",
       }}
       classes={{
         paper: classes.paper,
@@ -93,7 +91,7 @@ const NavigationBar = ({
         open={true}
         style={{
           height: "fit-content",
-          zIndex: viewerIsOpen || filterIsOpen ? "0" : "1302",
+          zIndex: filterIsOpen ? "0" : "1302",
         }}
         classes={{
           paper: classes.paper,

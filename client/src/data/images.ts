@@ -569,4 +569,11 @@ export const images = [
       "tree",
     ],
   },
-];
+].map((image, index) => ({
+  ...image,
+  index,
+  size: {
+    height: image.height,
+    width: image.width,
+  },
+}));

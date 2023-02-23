@@ -2,6 +2,13 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/rihanna.jpeg"),
+    width: 2864,
+    height: 3599,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["rihanna", "currents", "river", "woman", "flow"],
+  },
+  {
     src: require("../images/monarch.jpeg"),
     width: 3893,
     height: 2590,

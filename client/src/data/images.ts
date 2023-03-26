@@ -2,6 +2,50 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/moonmars.jpeg"),
+    width: 2921,
+    height: 3664,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "moon",
+      "mars",
+      "planet",
+      "space",
+      "sun",
+      "star",
+      "stars",
+      "universe",
+    ],
+  },
+  {
+    src: require("../images/moonclouds.jpeg"),
+    width: 2887,
+    height: 2900,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["moon", "clouds", "planet", "space", "universe"],
+  },
+  {
+    src: require("../images/greenspace.jpeg"),
+    width: 2894,
+    height: 3721,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["planet", "space", "star", "stars", "universe"],
+  },
+  {
+    src: require("../images/earth.jpeg"),
+    width: 3872,
+    height: 1934,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["earth", "planet", "space", "star", "stars", "universe"],
+  },
+  {
+    src: require("../images/desertplanet.jpeg"),
+    width: 1684,
+    height: 3438,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["desert", "mountain", "planet", "space", "universe"],
+  },
+  {
     src: require("../images/rihanna.jpeg"),
     width: 2864,
     height: 3599,

@@ -2,6 +2,13 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/missouri.jpeg"),
+    width: 1182,
+    height: 1069,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["missouri", "rock", "mountain", "tree", "river", "sky"],
+  },
+  {
     src: require("../images/moonmars.jpeg"),
     width: 2921,
     height: 3664,
@@ -69,15 +76,15 @@ export const images = [
   },
   {
     src: require("../images/brain.jpeg"),
-    width: 2913,
-    height: 3286,
+    width: 2040,
+    height: 2242,
     medium: Medium.WATER_COLOR,
     keywords: ["brain", "rainbow"],
   },
   {
     src: require("../images/tumor.jpeg"),
-    width: 3252,
-    height: 2884,
+    width: 2273,
+    height: 1971,
     medium: Medium.WATER_COLOR,
     keywords: ["brain", "rainbow", "tumor", "circle"],
   },

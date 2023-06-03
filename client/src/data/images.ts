@@ -2,11 +2,38 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/crescent.jpeg"),
+    width: 3712,
+    height: 2945,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "tree",
+      "moon",
+      "moonlight",
+      "light",
+      "lake",
+      "reflection",
+      "sky",
+      "crescent",
+      "night",
+    ],
+  },
+  {
     src: require("../images/reflection.jpeg"),
     width: 2580,
     height: 3939,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["tree", "moon", "water", "lake", "reflection", "sky"],
+    keywords: [
+      "tree",
+      "moon",
+      "moonlight",
+      "light",
+      "water",
+      "lake",
+      "reflection",
+      "sky",
+      "night",
+    ],
   },
   {
     src: require("../images/missouri.jpeg"),

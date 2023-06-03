@@ -10,10 +10,17 @@ export const images = [
   },
   {
     src: require("../images/missouri.jpeg"),
-    width: 1182,
-    height: 1069,
+    width: 1171,
+    height: 1041,
     medium: Medium.ACRYLIC_PAINT,
     keywords: ["missouri", "rock", "mountain", "tree", "river", "sky"],
+  },
+  {
+    src: require("../images/splatterbrain.jpeg"),
+    width: 1652,
+    height: 2082,
+    medium: Medium.WATER_COLOR,
+    keywords: ["brain", "splatter", "rainbow"],
   },
   {
     src: require("../images/moonmars.jpeg"),

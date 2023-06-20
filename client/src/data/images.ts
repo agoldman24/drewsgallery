@@ -2,9 +2,42 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/wave.jpeg"),
+    width: 2898,
+    height: 2927,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "sun",
+      "sunset",
+      "water",
+      "reflection",
+      "sky",
+      "ocean",
+      "wave",
+      "light",
+    ],
+  },
+  {
+    src: require("../images/sunset.jpeg"),
+    width: 2926,
+    height: 3680,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "sun",
+      "sunset",
+      "cloud",
+      "water",
+      "reflection",
+      "sky",
+      "ocean",
+      "wave",
+      "light",
+    ],
+  },
+  {
     src: require("../images/crescent.jpeg"),
-    width: 3712,
-    height: 2945,
+    width: 3622,
+    height: 2883,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "tree",
@@ -259,8 +292,8 @@ export const images = [
   },
   {
     src: require("../images/octopus.jpeg"),
-    width: 2790,
-    height: 2834,
+    width: 2911,
+    height: 2919,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "octopus",

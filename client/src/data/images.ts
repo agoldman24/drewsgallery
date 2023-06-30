@@ -2,6 +2,13 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/hydrangeas.jpeg"),
+    width: 2911,
+    height: 3497,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["flower", "flowers", "hydrangea", "plant", "nature", "sky"],
+  },
+  {
     src: require("../images/wave.jpeg"),
     width: 2898,
     height: 2927,

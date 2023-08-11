@@ -2,6 +2,24 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/treesunset.jpeg"),
+    width: 3645,
+    height: 2901,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "tree",
+      "grass",
+      "leaf",
+      "leaves",
+      "nature",
+      "sky",
+      "plant",
+      "mountain",
+      "sun",
+      "sunset",
+    ],
+  },
+  {
     src: require("../images/hydrangeas.jpeg"),
     width: 2911,
     height: 3497,
@@ -26,8 +44,8 @@ export const images = [
   },
   {
     src: require("../images/sunset.jpeg"),
-    width: 2926,
-    height: 3680,
+    width: 2890,
+    height: 3637,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "sun",
@@ -128,15 +146,15 @@ export const images = [
   },
   {
     src: require("../images/desertplanet.jpeg"),
-    width: 1684,
-    height: 3438,
+    width: 1953,
+    height: 3930,
     medium: Medium.ACRYLIC_PAINT,
     keywords: ["desert", "mountain", "planet", "space", "universe"],
   },
   {
     src: require("../images/rihanna.jpeg"),
-    width: 2864,
-    height: 3599,
+    width: 2907,
+    height: 3635,
     medium: Medium.ACRYLIC_PAINT,
     keywords: ["rihanna", "currents", "river", "woman", "flow"],
   },
@@ -171,8 +189,8 @@ export const images = [
   },
   {
     src: require("../images/centrowitz.jpeg"),
-    width: 3686,
-    height: 2948,
+    width: 3719,
+    height: 2951,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "matthew",

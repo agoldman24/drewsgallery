@@ -2,9 +2,30 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/hanukkah.jpeg"),
+    width: 2000,
+    height: 2600,
+    medium: Medium.WATER_COLOR,
+    keywords: ["hanukkah", "menorah", "fire", "candle", "light", "holiday"],
+  },
+  {
+    src: require("../images/hohoho.jpeg"),
+    width: 2000,
+    height: 2600,
+    medium: Medium.WATER_COLOR,
+    keywords: ["santa", "hohoho", "hat", "christmas", "holiday"],
+  },
+  {
+    src: require("../images/liquidtree.jpeg"),
+    width: 2957,
+    height: 3916,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: ["tree", "nature", "plant", "liquid", "psychedelic"],
+  },
+  {
     src: require("../images/treesunset.jpeg"),
-    width: 3645,
-    height: 2901,
+    width: 8191,
+    height: 6501,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "tree",

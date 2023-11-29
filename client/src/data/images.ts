@@ -2,6 +2,23 @@ import { Medium } from "./types";
 
 export const images = [
   {
+    src: require("../images/shenandoah.jpeg"),
+    width: 8352,
+    height: 6272,
+    medium: Medium.ACRYLIC_PAINT,
+    keywords: [
+      "sunset",
+      "mountain",
+      "tree",
+      "water",
+      "reflection",
+      "sky",
+      "land",
+      "nature",
+      "shenandoah",
+    ],
+  },
+  {
     src: require("../images/hanukkah.jpeg"),
     width: 2000,
     height: 2600,
@@ -82,8 +99,8 @@ export const images = [
   },
   {
     src: require("../images/crescent.jpeg"),
-    width: 3622,
-    height: 2883,
+    width: 5257,
+    height: 4088,
     medium: Medium.ACRYLIC_PAINT,
     keywords: [
       "tree",
@@ -152,9 +169,9 @@ export const images = [
     keywords: ["moon", "clouds", "planet", "space", "universe"],
   },
   {
-    src: require("../images/greenspace.jpeg"),
-    width: 2894,
-    height: 3721,
+    src: require("../images/gravity.jpeg"),
+    width: 4118,
+    height: 5240,
     medium: Medium.ACRYLIC_PAINT,
     keywords: ["planet", "space", "star", "stars", "universe"],
   },

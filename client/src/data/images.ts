@@ -183,11 +183,19 @@ export const images = [
     keywords: ["earth", "planet", "space", "star", "stars", "universe"],
   },
   {
-    src: require("../images/desertplanet.jpeg"),
-    width: 1953,
-    height: 3930,
+    src: require("../images/galacticrock.jpeg"),
+    width: 5789,
+    height: 11715,
     medium: Medium.ACRYLIC_PAINT,
-    keywords: ["desert", "mountain", "planet", "space", "universe"],
+    keywords: [
+      "rock",
+      "mountain",
+      "planet",
+      "space",
+      "universe",
+      "ring",
+      "gravity",
+    ],
   },
   {
     src: require("../images/rihanna.jpeg"),

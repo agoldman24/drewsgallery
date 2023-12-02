@@ -8,7 +8,7 @@ import {
   IconButton,
   withStyles,
 } from "@material-ui/core";
-import { Search, Close, FilterListRounded } from "@material-ui/icons";
+import { Search, Close, FilterListRounded, Refresh } from "@material-ui/icons";
 import { defaultTheme, gradientTextStyle, centeredTextStyle } from "../styles";
 
 const inputRoot = {
@@ -51,6 +51,8 @@ const styles = () => ({
 
 const NavigationBar = ({
   isFetching,
+  fetchImageData,
+  isNetworkFailure,
   isFilterOpen,
   setIsFilterOpen,
   keyword,
@@ -59,6 +61,8 @@ const NavigationBar = ({
   classes,
 }: {
   isFetching: boolean;
+  fetchImageData: () => void;
+  isNetworkFailure: boolean;
   isFilterOpen: boolean;
   setIsFilterOpen: (isOpen: boolean) => void;
   keyword: string;
@@ -106,102 +110,126 @@ const NavigationBar = ({
           },
         }}
       >
-        <Grid
-          container
-          direction="row"
-          style={{
-            position: "fixed",
-            padding: "0 10px",
-            width: "100%",
-            height: "45px",
-            borderBottom: "1px solid " + defaultTheme.palette.primary.main,
-          }}
-        >
-          <Grid
-            item
+        {isNetworkFailure ? (
+          <div
+            className="clickable"
+            onClick={fetchImageData}
             style={{
-              padding: "3px 6px",
-              position: "fixed",
-              zIndex: isSearchVisible ? "0" : "1",
-              opacity: isSearchVisible ? "0" : "1",
-              transitionProperty: "opacity",
-              transitionDuration: "0.5s",
+              width: "100%",
+              textAlign: "center",
+              color: "#ffffff",
+              background: "#c40019",
             }}
           >
-            <Typography
-              variant="h4"
+            <div
               style={{
-                float: "left",
-                fontWeight: "bold",
-                fontFamily: "Shadows Into Light",
-                ...gradientTextStyle(1),
+                display: "inline-block",
+                height: "100%",
+                padding: "13px 5px",
               }}
             >
-              Drew's
-            </Typography>
-            <Typography
-              variant="h4"
+              Connection failed. Click to retry
+            </div>
+            <Refresh style={{ verticalAlign: "middle" }} />
+          </div>
+        ) : (
+          <Grid
+            container
+            direction="row"
+            style={{
+              position: "fixed",
+              padding: "0 10px",
+              width: "100%",
+              height: "45px",
+              borderBottom: "1px solid " + defaultTheme.palette.primary.main,
+            }}
+          >
+            <Grid
+              item
               style={{
-                float: "left",
-                paddingLeft: "5px",
-                fontFamily: "Open Sans Condensed",
-                ...gradientTextStyle(2),
+                padding: "3px 6px",
+                position: "fixed",
+                zIndex: isSearchVisible ? "0" : "1",
+                opacity: isSearchVisible ? "0" : "1",
+                transitionProperty: "opacity",
+                transitionDuration: "0.5s",
               }}
             >
-              Gallery
-            </Typography>
-          </Grid>
-          <Grid item style={{ margin: "auto 0 auto auto" }}>
-            <InputBase
-              id="searchInput"
-              placeholder="Search..."
-              onFocus={() => setIsSearchFocused(true)}
-              onBlur={() => setIsSearchFocused(false)}
-              value={keyword}
-              onChange={(e) => setKeyword(e.target.value.toLowerCase())}
-              classes={{
-                root: !isSearchVisible
-                  ? classes.hiddenInputRoot
-                  : isSearchFocused
-                  ? classes.focusedInputRoot
-                  : classes.inputRoot,
-                input: classes.inputInput,
-              }}
-            />
-          </Grid>
-          <Grid item>
-            <IconButton
-              style={{ width: "fit-content" }}
-              onClick={() => {
-                if (isSearchVisible) {
-                  document.getElementById("searchInput")?.blur();
-                  setTimeout(() => setKeyword(""), 500);
-                  setIsSearchVisible(false);
-                } else {
-                  document.getElementById("searchInput")?.focus();
-                  setIsSearchVisible(true);
-                  setIsSearchFocused(true);
+              <Typography
+                variant="h4"
+                style={{
+                  float: "left",
+                  fontWeight: "bold",
+                  fontFamily: "Shadows Into Light",
+                  ...gradientTextStyle(1),
+                }}
+              >
+                Drew's
+              </Typography>
+              <Typography
+                variant="h4"
+                style={{
+                  float: "left",
+                  paddingLeft: "5px",
+                  fontFamily: "Open Sans Condensed",
+                  ...gradientTextStyle(2),
+                }}
+              >
+                Gallery
+              </Typography>
+            </Grid>
+            <Grid item style={{ margin: "auto 0 auto auto" }}>
+              <InputBase
+                id="searchInput"
+                placeholder="Search..."
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value.toLowerCase())}
+                classes={{
+                  root: !isSearchVisible
+                    ? classes.hiddenInputRoot
+                    : isSearchFocused
+                    ? classes.focusedInputRoot
+                    : classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
+            </Grid>
+            <Grid item>
+              <IconButton
+                style={{ width: "fit-content" }}
+                onClick={() => {
+                  if (isSearchVisible) {
+                    document.getElementById("searchInput")?.blur();
+                    setTimeout(() => setKeyword(""), 500);
+                    setIsSearchVisible(false);
+                  } else {
+                    document.getElementById("searchInput")?.focus();
+                    setIsSearchVisible(true);
+                    setIsSearchFocused(true);
+                  }
+                }}
+              >
+                {isSearchVisible ? <Close /> : <Search />}
+              </IconButton>
+            </Grid>
+            <Grid item>
+              <IconButton
+                color={
+                  Object.values(mediums).includes(false) ? "primary" : "default"
                 }
-              }}
-            >
-              {isSearchVisible ? <Close /> : <Search />}
-            </IconButton>
+                onClick={() => {
+                  setIsSearchVisible(false);
+                  setKeyword("");
+                  setIsFilterOpen(true);
+                }}
+              >
+                <FilterListRounded />
+              </IconButton>
+            </Grid>
           </Grid>
-          <Grid item>
-            <IconButton
-              color={
-                Object.values(mediums).includes(false) ? "primary" : "default"
-              }
-              onClick={() => {
-                setIsSearchVisible(false);
-                setKeyword("");
-                setIsFilterOpen(true);
-              }}
-            >
-              <FilterListRounded />
-            </IconButton>
-          </Grid>
-        </Grid>
+        )}
         {isFetching && (
           <div>
             <LinearProgress

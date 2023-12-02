@@ -23,26 +23,19 @@ const App = () => {
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
+  const [isNetworkFailure, setIsNetworkFailure] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [mediums, setMediums] = useState(defaultMediums);
 
   useEffect(() => {
-    Api.get("/getAllImages").then((res) => {
-      const decodedImages = res.data.images.sort(
-        (i1, i2) => i2.position - i1.position
-      );
-      setImages(decodedImages);
-      setFilteredImages(decodedImages);
-      setIsFetching(false);
-    });
+    fetchImageData();
     let lightbox = new PhotoSwipeLightbox({
       gallery: "#gallery",
       children: "a",
       pswpModule: PhotoSwipe,
     });
     lightbox.init();
-
     return () => {
       lightbox.destroy();
       lightbox = null;
@@ -73,6 +66,24 @@ const App = () => {
     );
   }, [mediums]);
 
+  const fetchImageData = () => {
+    setIsNetworkFailure(false);
+    setIsFetching(true);
+    Api.get("/getAllImages")
+      .then((res) => {
+        const decodedImages = res.data.images.sort(
+          (i1, i2) => i2.position - i1.position
+        );
+        setImages(decodedImages);
+        setFilteredImages(decodedImages);
+        setIsFetching(false);
+      })
+      .catch(() => {
+        setIsNetworkFailure(true);
+        setIsFetching(false);
+      });
+  };
+
   const closeFilter = () => {
     setIsFilterOpen(false);
   };
@@ -82,6 +93,8 @@ const App = () => {
       <GalaxyBackground />
       <NavigationBar
         isFetching={isFetching}
+        fetchImageData={fetchImageData}
+        isNetworkFailure={isNetworkFailure}
         isFilterOpen={isFilterOpen}
         setIsFilterOpen={setIsFilterOpen}
         keyword={keyword}

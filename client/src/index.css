@@ -20,6 +20,10 @@ body {
   );
 }
 
+.clickable:hover {
+  cursor: pointer;
+}
+
 @keyframes animateCloudDiagonal {
   from {
     transform: translateY(1000px) translateX(500px);

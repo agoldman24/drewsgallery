@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {
+  Button,
   Dialog,
   Grid,
   LinearProgress,
@@ -99,6 +100,7 @@ const NavigationBar = ({
         open={true}
         style={{
           height: "fit-content",
+          marginTop: "35px",
           zIndex: isFilterOpen ? "0" : "1302",
         }}
         classes={{
@@ -133,107 +135,138 @@ const NavigationBar = ({
             <Refresh style={{ verticalAlign: "middle" }} />
           </div>
         ) : (
-          <Grid
-            container
-            direction="row"
-            style={{
-              position: "fixed",
-              padding: "0 10px",
-              width: "100%",
-              height: "45px",
-              borderBottom: "1px solid " + defaultTheme.palette.primary.main,
-            }}
-          >
+          <Grid container direction="column">
             <Grid
-              item
+              container
+              direction="row"
               style={{
-                padding: "3px 6px",
                 position: "fixed",
-                zIndex: isSearchVisible ? "0" : "1",
-                opacity: isSearchVisible ? "0" : "1",
-                transitionProperty: "opacity",
-                transitionDuration: "0.5s",
+                padding: "0 10px",
+                width: "100%",
+                height: "45px",
+                borderBottom: "1px solid " + defaultTheme.palette.primary.main,
               }}
             >
-              <Typography
-                variant="h4"
+              <Grid
+                item
                 style={{
-                  float: "left",
-                  fontWeight: "bold",
-                  fontFamily: "Shadows Into Light",
-                  ...gradientTextStyle(1),
+                  width: "100%",
                 }}
               >
-                Drew's
-              </Typography>
-              <Typography
-                variant="h4"
-                style={{
-                  float: "left",
-                  paddingLeft: "5px",
-                  fontFamily: "Open Sans Condensed",
-                  ...gradientTextStyle(2),
-                }}
-              >
-                Gallery
-              </Typography>
-            </Grid>
-            <Grid item style={{ margin: "auto 0 auto auto" }}>
-              <InputBase
-                id="searchInput"
-                placeholder="Search..."
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-                value={keyword}
-                onChange={(e) => setKeyword(e.target.value.toLowerCase())}
-                classes={{
-                  root: !isSearchVisible
-                    ? classes.hiddenInputRoot
-                    : isSearchFocused
-                    ? classes.focusedInputRoot
-                    : classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </Grid>
-            <Grid item>
-              <IconButton
-                style={{ width: "fit-content" }}
-                onClick={() => {
-                  if (isSearchVisible) {
-                    document.getElementById("searchInput")?.blur();
-                    setTimeout(() => setKeyword(""), 500);
-                    setIsSearchVisible(false);
-                  } else {
-                    document.getElementById("searchInput")?.focus();
-                    setIsSearchVisible(true);
-                    setIsSearchFocused(true);
+                <Button
+                  style={{
+                    position: "fixed",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    color: "#2c0063",
+                    fontFamily: "monospace",
+                    fontSize: "14px",
+                    fontWeight: "bold",
+                    background: defaultTheme.gradient0,
+                    borderRadius: "0",
+                    padding: "8px 0 4px 0",
+                  }}
+                  onClick={() =>
+                    window.open("https://andrew-goldman.pixels.com/art")
                   }
+                >
+                  Click here to shop wall art
+                </Button>
+              </Grid>
+              <Grid
+                item
+                style={{
+                  padding: "3px 6px",
+                  position: "fixed",
+                  zIndex: isSearchVisible ? "0" : "1",
+                  opacity: isSearchVisible ? "0" : "1",
+                  transitionProperty: "opacity",
+                  transitionDuration: "0.5s",
                 }}
               >
-                {isSearchVisible ? <Close /> : <Search />}
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <IconButton
-                color={
-                  Object.values(mediums).includes(false) ? "primary" : "default"
-                }
-                onClick={() => {
-                  setIsSearchVisible(false);
-                  setKeyword("");
-                  setIsFilterOpen(true);
-                }}
-              >
-                <FilterListRounded />
-              </IconButton>
+                <Typography
+                  variant="h4"
+                  style={{
+                    float: "left",
+                    fontWeight: "bold",
+                    fontFamily: "Shadows Into Light",
+                    ...gradientTextStyle(1),
+                  }}
+                >
+                  Drew's
+                </Typography>
+                <Typography
+                  variant="h4"
+                  style={{
+                    float: "left",
+                    paddingLeft: "5px",
+                    fontFamily: "Open Sans Condensed",
+                    ...gradientTextStyle(2),
+                  }}
+                >
+                  Gallery
+                </Typography>
+              </Grid>
+              <Grid item style={{ margin: "auto 0 auto auto" }}>
+                <InputBase
+                  id="searchInput"
+                  placeholder="Search..."
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                  value={keyword}
+                  onChange={(e) => setKeyword(e.target.value.toLowerCase())}
+                  classes={{
+                    root: !isSearchVisible
+                      ? classes.hiddenInputRoot
+                      : isSearchFocused
+                      ? classes.focusedInputRoot
+                      : classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </Grid>
+              <Grid item>
+                <IconButton
+                  style={{ width: "fit-content" }}
+                  onClick={() => {
+                    if (isSearchVisible) {
+                      document.getElementById("searchInput")?.blur();
+                      setTimeout(() => setKeyword(""), 500);
+                      setIsSearchVisible(false);
+                    } else {
+                      document.getElementById("searchInput")?.focus();
+                      setIsSearchVisible(true);
+                      setIsSearchFocused(true);
+                    }
+                  }}
+                >
+                  {isSearchVisible ? <Close /> : <Search />}
+                </IconButton>
+              </Grid>
+              <Grid item>
+                <IconButton
+                  color={
+                    Object.values(mediums).includes(false)
+                      ? "primary"
+                      : "default"
+                  }
+                  onClick={() => {
+                    setIsSearchVisible(false);
+                    setKeyword("");
+                    setIsFilterOpen(true);
+                  }}
+                >
+                  <FilterListRounded />
+                </IconButton>
+              </Grid>
             </Grid>
           </Grid>
         )}
         {isFetching && (
           <div>
             <LinearProgress
-              style={{ position: "fixed", top: "45px", width: "100%" }}
+              style={{ position: "fixed", top: "80px", width: "100%" }}
             />
             <div style={centeredTextStyle}>Retrieving images...</div>
           </div>

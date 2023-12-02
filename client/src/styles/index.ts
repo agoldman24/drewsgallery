@@ -7,6 +7,7 @@ export const defaultTheme = {
       main: "#4bff8c",
     },
   },
+  gradient0: "linear-gradient(to right, #6f27f8, #4bff8c)",
   gradient1: "linear-gradient(to top right, #6f27f8, #4bff8c)",
   gradient2: "linear-gradient(to top right, #4bff8c, #ffffff)",
 };
@@ -33,10 +34,10 @@ export const modalStyle = {
 } as CSSProperties;
 
 export const galleryContainerStyle = {
-  top: "45px",
+  top: "80px",
   left: "0",
   width: "calc(100% - 10px)",
-  height: "calc(100% - 55px)",
+  height: "calc(100% - 90px)",
   position: "fixed",
   overflowY: "auto",
   overflowX: "hidden",
@@ -57,7 +58,7 @@ export const closeIconStyle = {
 export const centeredTextStyle = {
   width: "100%",
   textAlign: "center",
-  marginTop: "75px",
+  marginTop: "65px",
   fontSize: "16px",
   color: "#5ccfff",
   fontFamily: "monospace",

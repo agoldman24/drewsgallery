@@ -13,7 +13,7 @@ export const defaultTheme = {
 
 export const gradientTextStyle = (variety: number) =>
   ({
-    background: variety == 1 ? defaultTheme.gradient1 : defaultTheme.gradient2,
+    background: variety === 1 ? defaultTheme.gradient1 : defaultTheme.gradient2,
     WebkitBackgroundClip: "text",
     WebkitTextFillColor: "transparent",
   } as CSSProperties);
@@ -52,4 +52,13 @@ export const closeButtonStyle = {
 export const closeIconStyle = {
   width: "32px",
   height: "32px",
+} as CSSProperties;
+
+export const centeredTextStyle = {
+  width: "100%",
+  textAlign: "center",
+  marginTop: "75px",
+  fontSize: "16px",
+  color: "#5ccfff",
+  fontFamily: "monospace",
 } as CSSProperties;

@@ -7,12 +7,13 @@
   },
   "scripts": {
     "dev": "concurrently \"node index.js\" \"cd client && npm start\"",
-    "start": "npm i -S express && node index.js",
+    "start": "npm i -S mongoose express cors && node index.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "concurrently": "^7.6.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongoose": "^8.0.2"
   }
 }

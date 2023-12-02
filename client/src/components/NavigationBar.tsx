@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import {
   Dialog,
   Grid,
+  LinearProgress,
   Typography,
   InputBase,
   IconButton,
   withStyles,
 } from "@material-ui/core";
 import { Search, Close, FilterListRounded } from "@material-ui/icons";
-import { defaultTheme, gradientTextStyle } from "../styles";
+import { defaultTheme, gradientTextStyle, centeredTextStyle } from "../styles";
 
 const inputRoot = {
   fontSize: "16px",
@@ -44,19 +45,22 @@ const styles = () => ({
     maxWidth: "none",
     borderRadius: "0",
     background: "none",
+    boxShadow: "none",
   },
 });
 
 const NavigationBar = ({
-  filterIsOpen,
-  setFilterIsOpen,
+  isFetching,
+  isFilterOpen,
+  setIsFilterOpen,
   keyword,
   setKeyword,
   mediums,
   classes,
 }: {
-  filterIsOpen: boolean;
-  setFilterIsOpen: (isOpen: boolean) => void;
+  isFetching: boolean;
+  isFilterOpen: boolean;
+  setIsFilterOpen: (isOpen: boolean) => void;
   keyword: string;
   setKeyword: (val: string) => void;
   mediums: { [key: string]: boolean };
@@ -76,7 +80,7 @@ const NavigationBar = ({
       open={true}
       style={{
         height: "fit-content",
-        zIndex: filterIsOpen ? "0" : "1301",
+        zIndex: isFilterOpen ? "0" : "1301",
       }}
       classes={{
         paper: classes.paper,
@@ -91,7 +95,7 @@ const NavigationBar = ({
         open={true}
         style={{
           height: "fit-content",
-          zIndex: filterIsOpen ? "0" : "1302",
+          zIndex: isFilterOpen ? "0" : "1302",
         }}
         classes={{
           paper: classes.paper,
@@ -191,13 +195,21 @@ const NavigationBar = ({
               onClick={() => {
                 setIsSearchVisible(false);
                 setKeyword("");
-                setFilterIsOpen(true);
+                setIsFilterOpen(true);
               }}
             >
               <FilterListRounded />
             </IconButton>
           </Grid>
         </Grid>
+        {isFetching && (
+          <div>
+            <LinearProgress
+              style={{ position: "fixed", top: "45px", width: "100%" }}
+            />
+            <div style={centeredTextStyle}>Retrieving images...</div>
+          </div>
+        )}
       </Dialog>
     </Dialog>
   );

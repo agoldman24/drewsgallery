@@ -7,7 +7,7 @@ import {
   galleryContainerStyle,
   modalStyle,
 } from "./styles";
-import { images } from "./data/images";
+import Api from "./api/siteUrl";
 import { defaultMediums } from "./data/types";
 import Gallery from "react-photo-gallery";
 import { Modal, ModalGateway } from "react-images";
@@ -20,12 +20,22 @@ import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
 
 const App = () => {
-  const [filteredImages, setFilteredImages] = useState(images);
-  const [filterIsOpen, setFilterIsOpen] = useState(false);
+  const [images, setImages] = useState([]);
+  const [filteredImages, setFilteredImages] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const [mediums, setMediums] = useState(defaultMediums);
 
   useEffect(() => {
+    Api.get("/getAllImages").then((res) => {
+      const decodedImages = res.data.images.sort(
+        (i1, i2) => i2.position - i1.position
+      );
+      setImages(decodedImages);
+      setFilteredImages(decodedImages);
+      setIsFetching(false);
+    });
     let lightbox = new PhotoSwipeLightbox({
       gallery: "#gallery",
       children: "a",
@@ -64,22 +74,27 @@ const App = () => {
   }, [mediums]);
 
   const closeFilter = () => {
-    setFilterIsOpen(false);
+    setIsFilterOpen(false);
   };
 
   return (
     <MuiThemeProvider theme={createMuiTheme(defaultTheme)}>
       <GalaxyBackground />
       <NavigationBar
-        filterIsOpen={filterIsOpen}
-        setFilterIsOpen={setFilterIsOpen}
+        isFetching={isFetching}
+        isFilterOpen={isFilterOpen}
+        setIsFilterOpen={setIsFilterOpen}
         keyword={keyword}
         setKeyword={setKeyword}
         mediums={mediums}
       />
       <div id="gallery" style={galleryContainerStyle} className="pswp-gallery">
         <Gallery
-          photos={filteredImages}
+          photos={filteredImages.map((image) => ({
+            ...image,
+            width: image.size.width,
+            height: image.size.height,
+          }))}
           renderImage={(image) => {
             return (
               <GalleryImage
@@ -94,7 +109,7 @@ const App = () => {
       </div>
 
       <ModalGateway>
-        {filterIsOpen && (
+        {isFilterOpen && (
           <Modal
             onClose={closeFilter}
             style={modalStyle}

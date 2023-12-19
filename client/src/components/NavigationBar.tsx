@@ -168,7 +168,7 @@ const NavigationBar = ({
                     padding: "8px 0 4px 0",
                   }}
                   onClick={() =>
-                    window.open("https://andrew-goldman.pixels.com/art")
+                    window.open("https://andrew-goldman.pixels.com")
                   }
                 >
                   Click here to shop wall art

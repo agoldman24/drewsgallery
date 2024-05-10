@@ -161,16 +161,12 @@ const App = () => {
               >
                 Hello, my name is Andrew Goldman. I am a passionate artist based
                 in Washington, D.C. I found my love for art at the age of 10 by
-                painting murals on school walls and neighbors' bedrooms, then
-                continuing to explore other mediums in high school such as
-                colored pencil and oil pastel. In the past few years I've found
-                special joy in painting with acrylics on canvas, and my favorite
-                subjects include sunsets, trees, and outer space. I am open for
-                commissions for original works on canvas, wall murals, and logo
-                designs. Additionally, a select few of my works are available as
-                prints on canvas, paper, blankets, towels, yoga mats, phone
-                cases, and coffee mugs (see shopping link at the top of this
-                page).
+                painting murals on school walls and neighbors' bedrooms, and in
+                the past few years I've found special joy in acrylics on canvas.
+                I am open to commissions for original paintings, wall murals,
+                and logo designs. My works are also available as prints on
+                canvas, framed paper, blankets, towels, yoga mats, phone cases,
+                tote bags, and other products (link above).
               </Grid>
             </Grid>
           </Grid>

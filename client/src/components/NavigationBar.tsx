@@ -1,15 +1,12 @@
-import { useEffect, useState } from "react";
 import {
   Button,
   Dialog,
   Grid,
   LinearProgress,
   Typography,
-  InputBase,
-  IconButton,
   withStyles,
 } from "@material-ui/core";
-import { Search, Close, FilterListRounded, Refresh } from "@material-ui/icons";
+import { Refresh } from "@material-ui/icons";
 import { defaultTheme, gradientTextStyle, centeredTextStyle } from "../styles";
 
 const inputRoot = {
@@ -54,38 +51,21 @@ const NavigationBar = ({
   isFetching,
   fetchImageData,
   isNetworkFailure,
-  isFilterOpen,
-  setIsFilterOpen,
-  keyword,
-  setKeyword,
-  mediums,
+  setIsAboutPageDisplayed,
   classes,
 }: {
   isFetching: boolean;
   fetchImageData: () => void;
   isNetworkFailure: boolean;
-  isFilterOpen: boolean;
-  setIsFilterOpen: (isOpen: boolean) => void;
-  keyword: string;
-  setKeyword: (val: string) => void;
-  mediums: { [key: string]: boolean };
+  setIsAboutPageDisplayed: Function;
   classes: any;
 }) => {
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
-  const [isSearchFocused, setIsSearchFocused] = useState(false);
-
-  useEffect(() => {
-    if (!isSearchVisible) {
-      setIsSearchFocused(false);
-    }
-  }, [isSearchVisible]);
-
   return (
     <Dialog
       open={true}
       style={{
         height: "fit-content",
-        zIndex: isFilterOpen ? "0" : "1301",
+        zIndex: "1301",
       }}
       classes={{
         paper: classes.paper,
@@ -101,7 +81,7 @@ const NavigationBar = ({
         style={{
           height: "fit-content",
           marginTop: "35px",
-          zIndex: isFilterOpen ? "0" : "1302",
+          zIndex: "1302",
         }}
         classes={{
           paper: classes.paper,
@@ -179,11 +159,9 @@ const NavigationBar = ({
                 style={{
                   padding: "3px 6px",
                   position: "fixed",
-                  zIndex: isSearchVisible ? "0" : "1",
-                  opacity: isSearchVisible ? "0" : "1",
-                  transitionProperty: "opacity",
-                  transitionDuration: "0.5s",
                 }}
+                className="clickable"
+                onClick={() => setIsAboutPageDisplayed(false)}
               >
                 <Typography
                   variant="h4"
@@ -208,57 +186,21 @@ const NavigationBar = ({
                   Gallery
                 </Typography>
               </Grid>
-              <Grid item style={{ margin: "auto 0 auto auto" }}>
-                <InputBase
-                  id="searchInput"
-                  placeholder="Search..."
-                  onFocus={() => setIsSearchFocused(true)}
-                  onBlur={() => setIsSearchFocused(false)}
-                  value={keyword}
-                  onChange={(e) => setKeyword(e.target.value.toLowerCase())}
-                  classes={{
-                    root: !isSearchVisible
-                      ? classes.hiddenInputRoot
-                      : isSearchFocused
-                      ? classes.focusedInputRoot
-                      : classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                />
-              </Grid>
               <Grid item>
-                <IconButton
-                  style={{ width: "fit-content" }}
-                  onClick={() => {
-                    if (isSearchVisible) {
-                      document.getElementById("searchInput")?.blur();
-                      setTimeout(() => setKeyword(""), 500);
-                      setIsSearchVisible(false);
-                    } else {
-                      document.getElementById("searchInput")?.focus();
-                      setIsSearchVisible(true);
-                      setIsSearchFocused(true);
-                    }
+                <Button
+                  style={{
+                    position: "fixed",
+                    right: "10px",
+                    marginTop: "5px",
+                    fontWeight: "bold",
+                    fontFamily: "Signika",
+                    fontSize: "16px",
+                    ...gradientTextStyle(2),
                   }}
+                  onClick={() => setIsAboutPageDisplayed(true)}
                 >
-                  {isSearchVisible ? <Close /> : <Search />}
-                </IconButton>
-              </Grid>
-              <Grid item>
-                <IconButton
-                  color={
-                    Object.values(mediums).includes(false)
-                      ? "primary"
-                      : "default"
-                  }
-                  onClick={() => {
-                    setIsSearchVisible(false);
-                    setKeyword("");
-                    setIsFilterOpen(true);
-                  }}
-                >
-                  <FilterListRounded />
-                </IconButton>
+                  About
+                </Button>
               </Grid>
             </Grid>
           </Grid>

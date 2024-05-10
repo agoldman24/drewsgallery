@@ -1,32 +1,30 @@
 import { useEffect, useState } from "react";
-import { withStyles } from "@material-ui/core";
+import { withStyles, Grid } from "@material-ui/core";
 import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import {
   defaultTheme,
   dialogStyles,
   galleryContainerStyle,
-  modalStyle,
+  galleryContainerStyle1,
 } from "./styles";
 import Api from "./api/siteUrl";
 import { defaultMediums } from "./data/types";
 import Gallery from "react-photo-gallery";
-import { Modal, ModalGateway } from "react-images";
 import GalaxyBackground from "./components/GalaxyBackground";
 import GalleryImage from "./components/GalleryImage";
 import NavigationBar from "./components/NavigationBar";
-import Filters from "./components/Filters";
 import PhotoSwipeLightbox from "photoswipe/lightbox";
 import PhotoSwipe from "photoswipe";
 import "photoswipe/style.css";
+import Mediums from "./components/Mediums";
 
 const App = () => {
   const [images, setImages] = useState([]);
   const [filteredImages, setFilteredImages] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
   const [isNetworkFailure, setIsNetworkFailure] = useState(false);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [keyword, setKeyword] = useState("");
   const [mediums, setMediums] = useState(defaultMediums);
+  const [isAboutPageDisplayed, setIsAboutPageDisplayed] = useState(false);
 
   useEffect(() => {
     fetchImageData();
@@ -41,20 +39,6 @@ const App = () => {
       lightbox = null;
     };
   }, []);
-
-  useEffect(() => {
-    if (keyword.length) {
-      setMediums(defaultMediums);
-      setFilteredImages(
-        images.filter(
-          (image) =>
-            image.keywords.filter((k) => k.includes(keyword)).length > 0
-        )
-      );
-    } else {
-      setFilteredImages(images);
-    }
-  }, [keyword]);
 
   useEffect(() => {
     setFilteredImages(
@@ -75,17 +59,19 @@ const App = () => {
           (i1, i2) => i2.position - i1.position
         );
         setImages(decodedImages);
-        setFilteredImages(decodedImages);
+        setFilteredImages(
+          decodedImages.filter((image) =>
+            Object.keys(mediums)
+              .filter((m) => mediums[m])
+              .includes(image.medium)
+          )
+        );
         setIsFetching(false);
       })
       .catch(() => {
         setIsNetworkFailure(true);
         setIsFetching(false);
       });
-  };
-
-  const closeFilter = () => {
-    setIsFilterOpen(false);
   };
 
   return (
@@ -95,47 +81,119 @@ const App = () => {
         isFetching={isFetching}
         fetchImageData={fetchImageData}
         isNetworkFailure={isNetworkFailure}
-        isFilterOpen={isFilterOpen}
-        setIsFilterOpen={setIsFilterOpen}
-        keyword={keyword}
-        setKeyword={setKeyword}
-        mediums={mediums}
+        setIsAboutPageDisplayed={setIsAboutPageDisplayed}
       />
-      <div id="gallery" style={galleryContainerStyle} className="pswp-gallery">
-        <Gallery
-          photos={filteredImages.map((image) => ({
-            ...image,
-            width: image.size.width,
-            height: image.size.height,
-          }))}
-          renderImage={(image) => {
-            return (
-              <GalleryImage
-                image={image}
-                size={filteredImages[image.index].size}
-                key={image.photo.src}
-              />
-            );
-          }}
-          margin={5}
-        />
-      </div>
-
-      <ModalGateway>
-        {isFilterOpen && (
-          <Modal
-            onClose={closeFilter}
-            style={modalStyle}
-            closeOnBackdropClick={false}
+      {!isAboutPageDisplayed && (
+        <Mediums mediums={mediums} setMediums={setMediums} />
+      )}
+      <div
+        id="gallery"
+        style={
+          isAboutPageDisplayed ? galleryContainerStyle1 : galleryContainerStyle
+        }
+        className="pswp-gallery"
+      >
+        {isAboutPageDisplayed ? (
+          <Grid
+            container
+            direction="column"
+            style={{
+              padding: "15px",
+            }}
           >
-            <Filters
-              mediums={mediums}
-              setMediums={setMediums}
-              closeFilter={closeFilter}
-            />
-          </Modal>
+            <Grid container direction="row">
+              <Grid container direction="column" style={{ width: "130px" }}>
+                <Grid item>
+                  <img src={require("./data/andrew.jpeg")} width="130px"></img>
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    paddingTop: "10px",
+                    color: "#ffffff",
+                    fontFamily: "Signika",
+                    fontSize: "20px",
+                  }}
+                >
+                  Phone:
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    color: "#56d8fc",
+                    fontFamily: "Signika",
+                    fontSize: "20px",
+                  }}
+                >
+                  703-945-5509
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    paddingTop: "5px",
+                    color: "#ffffff",
+                    fontFamily: "Signika",
+                    fontSize: "20px",
+                  }}
+                >
+                  Email:
+                </Grid>
+                <Grid
+                  item
+                  style={{
+                    color: "#56d8fc",
+                    fontFamily: "Signika",
+                    fontSize: "20px",
+                  }}
+                >
+                  abg@vt.edu
+                </Grid>
+              </Grid>
+              <Grid
+                item
+                style={{
+                  color: defaultTheme.palette.primary.main,
+                  paddingBottom: "15px",
+                  width: "calc(100% - 130px)",
+                  paddingLeft: "15px",
+                  fontFamily: "Signika",
+                }}
+              >
+                Hello, my name is Andrew Goldman. I am a passionate artist based
+                in Washington, D.C. I found my love for art at the age of 10 by
+                painting murals on school walls and neighbors' bedrooms, then
+                continuing to explore other mediums in high school such as
+                colored pencil and oil pastel. In the past few years I've found
+                special joy in painting with acrylics on canvas, and my favorite
+                subjects include sunsets, trees, and outer space. I am open for
+                commissions for original works on canvas, wall murals, and logo
+                designs. Additionally, a select few of my works are available as
+                prints on canvas, paper, blankets, towels, yoga mats, phone
+                cases, and coffee mugs (see shopping link at the top of this
+                page).
+              </Grid>
+            </Grid>
+          </Grid>
+        ) : (
+          <Gallery
+            photos={filteredImages.map((image) => ({
+              ...image,
+              width: image.size.width,
+              height: image.size.height,
+            }))}
+            renderImage={(image) => {
+              return (
+                <GalleryImage
+                  image={image}
+                  size={filteredImages[image.index].size}
+                  key={image.photo.src}
+                />
+              );
+            }}
+            margin={5}
+          />
         )}
-      </ModalGateway>
+      </div>
     </MuiThemeProvider>
   );
 };

@@ -29,11 +29,18 @@ export const dialogStyles = () =>
     },
   } as CSSProperties);
 
-export const modalStyle = {
-  zIndex: "1303",
+export const galleryContainerStyle = {
+  top: "125px",
+  left: "0",
+  width: "calc(100% - 10px)",
+  height: "calc(100% - 135px)",
+  position: "fixed",
+  overflowY: "auto",
+  overflowX: "hidden",
+  padding: "5px",
 } as CSSProperties;
 
-export const galleryContainerStyle = {
+export const galleryContainerStyle1 = {
   top: "80px",
   left: "0",
   width: "calc(100% - 10px)",
@@ -58,7 +65,7 @@ export const closeIconStyle = {
 export const centeredTextStyle = {
   width: "100%",
   textAlign: "center",
-  marginTop: "65px",
+  marginTop: "100px",
   fontSize: "16px",
   color: "#5ccfff",
   fontFamily: "monospace",

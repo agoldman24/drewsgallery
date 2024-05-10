@@ -8,12 +8,12 @@ export enum Medium {
 }
 
 export const defaultMediums = {
-  [Medium.COLORED_PENCIL]: true,
+  [Medium.COLORED_PENCIL]: false,
   [Medium.ACRYLIC_PAINT]: true,
-  [Medium.WATER_COLOR]: true,
-  [Medium.INK]: true,
-  [Medium.CHARCOAL]: true,
-  [Medium.OIL_PASTEL]: true,
+  [Medium.WATER_COLOR]: false,
+  [Medium.INK]: false,
+  [Medium.CHARCOAL]: false,
+  [Medium.OIL_PASTEL]: false,
 };
 
 export const emptyMediums = {
@@ -23,4 +23,13 @@ export const emptyMediums = {
   [Medium.INK]: false,
   [Medium.CHARCOAL]: false,
   [Medium.OIL_PASTEL]: false,
+};
+
+export const allMediums = {
+  [Medium.COLORED_PENCIL]: true,
+  [Medium.ACRYLIC_PAINT]: true,
+  [Medium.WATER_COLOR]: true,
+  [Medium.INK]: true,
+  [Medium.CHARCOAL]: true,
+  [Medium.OIL_PASTEL]: true,
 };

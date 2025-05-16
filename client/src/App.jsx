@@ -81,6 +81,7 @@ const App = () => {
         isFetching={isFetching}
         fetchImageData={fetchImageData}
         isNetworkFailure={isNetworkFailure}
+        isAboutPageDisplayed={isAboutPageDisplayed}
         setIsAboutPageDisplayed={setIsAboutPageDisplayed}
       />
       {!isAboutPageDisplayed && (
@@ -159,14 +160,25 @@ const App = () => {
                   fontFamily: "Signika",
                 }}
               >
-                Hello, my name is Andrew Goldman. I am a passionate artist based
-                in Washington, D.C. I found my love for art at the age of 10 by
-                painting murals on school walls and neighbors' bedrooms, and in
-                the past few years I've found special joy in acrylics on canvas.
-                I am open to commissions for original paintings, wall murals,
-                and logo designs. My works are also available as prints on
-                canvas, framed paper, blankets, towels, yoga mats, phone cases,
-                tote bags, and other products (link above).
+                <div>
+                  Hello, my name is Andrew Goldman. I am a passionate artist
+                  based in Arlington, Virginia. I found my love for painting as
+                  a child and continue to bring my visions to life on canvas
+                  using bright colors and vibrant impressions of nature. I am
+                  open to commissions for original paintings and logo designs,
+                  and I also sell prints of my works at{" "}
+                  <b
+                    className="clickable"
+                    style={{ color: "#56d8fc" }}
+                    onClick={() =>
+                      window.open(
+                        "https://pixels.com/profiles/andrew-goldman/shop"
+                      )
+                    }
+                  >
+                    https://pixels.com/profiles/andrew-goldman/shop
+                  </b>
+                </div>
               </Grid>
             </Grid>
           </Grid>

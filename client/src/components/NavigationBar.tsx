@@ -51,12 +51,14 @@ const NavigationBar = ({
   isFetching,
   fetchImageData,
   isNetworkFailure,
+  isAboutPageDisplayed,
   setIsAboutPageDisplayed,
   classes,
 }: {
   isFetching: boolean;
   fetchImageData: () => void;
   isNetworkFailure: boolean;
+  isAboutPageDisplayed: boolean;
   setIsAboutPageDisplayed: Function;
   classes: any;
 }) => {
@@ -148,7 +150,9 @@ const NavigationBar = ({
                     padding: "8px 0 4px 0",
                   }}
                   onClick={() =>
-                    window.open("https://pixels.com/profiles/andrew-goldman")
+                    window.open(
+                      "https://pixels.com/profiles/andrew-goldman/shop"
+                    )
                   }
                 >
                   Click here to shop wall art
@@ -197,9 +201,9 @@ const NavigationBar = ({
                     fontSize: "16px",
                     ...gradientTextStyle(2),
                   }}
-                  onClick={() => setIsAboutPageDisplayed(true)}
+                  onClick={() => setIsAboutPageDisplayed(!isAboutPageDisplayed)}
                 >
-                  About
+                  {isAboutPageDisplayed ? "Home" : "About"}
                 </Button>
               </Grid>
             </Grid>

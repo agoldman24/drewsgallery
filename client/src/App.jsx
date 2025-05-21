@@ -161,12 +161,10 @@ const App = () => {
                 }}
               >
                 <div>
-                  Hello, my name is Andrew Goldman. I am a passionate artist
-                  based in Arlington, Virginia. I found my love for painting as
-                  a child and continue to bring my visions to life on canvas
-                  using bright colors and vibrant impressions of nature. I am
-                  open to commissions for original paintings and logo designs,
-                  and I also sell prints of my works at{" "}
+                  Andrew Goldman is an acrylic painter
+                  based in Arlington, Virginia. He found his love for painting as
+                  a child and continues to bring his visions to life on canvas
+                  using bright colors and vibrant impressions of nature. Andrew is open to commissions for original artwork, murals, and logo designs. Fine art prints of his works can be purchased at{" "}
                   <b
                     className="clickable"
                     style={{ color: "#56d8fc" }}

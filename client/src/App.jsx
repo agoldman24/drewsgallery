@@ -103,9 +103,9 @@ const App = () => {
             }}
           >
             <Grid container direction="row">
-              <Grid container direction="column" style={{ width: "130px" }}>
+              <Grid container direction="column" style={{ width: "180px" }}>
                 <Grid item>
-                  <img src={require("./data/andrew.jpeg")} width="130px"></img>
+                  <img src={require("./data/andrew.jpeg")} width="180px"></img>
                 </Grid>
                 <Grid
                   item
@@ -155,16 +155,18 @@ const App = () => {
                 style={{
                   color: defaultTheme.palette.primary.main,
                   paddingBottom: "15px",
-                  width: "calc(100% - 130px)",
+                  width: "calc(100% - 180px)",
                   paddingLeft: "15px",
                   fontFamily: "Signika",
                 }}
               >
                 <div>
-                  Andrew Goldman is an acrylic painter
-                  based in Arlington, Virginia. He found his love for painting as
-                  a child and continues to bring his visions to life on canvas
-                  using bright colors and vibrant impressions of nature. Andrew is open to commissions for original artwork, murals, and logo designs. Fine art prints of his works can be purchased at{" "}
+                  Andrew Goldman is an acrylic painter based in Arlington,
+                  Virginia. He found his love for painting as a child and
+                  continues to bring his visions to life on canvas using bright
+                  colors and vibrant impressions of nature. Andrew is open to
+                  commissions for original artwork, murals, and logo designs.
+                  Fine art prints of his works can be purchased at{" "}
                   <b
                     className="clickable"
                     style={{ color: "#56d8fc" }}

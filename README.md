@@ -1,1 +1,1 @@
-Andrew Goldman's art portfolio
+Digital gallery of artwork by Andrew Goldman - visit drewsgallery.com
